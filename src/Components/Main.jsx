@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 import img from '../assets/ok.jpg';
 import Nav from './Nav'
 import Searchbar from './Searchbar';
+import Blog from './Blog'
+import React from 'react';
 const Mains = styled.div`
     height: 100%;
     width: 100%;
@@ -14,6 +16,7 @@ const Main = () => {
         <Mains>
             <Nav></Nav>
             <Searchbar></Searchbar>
+            <Blog></Blog>
         </Mains>
     );
 };

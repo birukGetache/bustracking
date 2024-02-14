@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-
+import React from 'react';
 const Search = styled.input`
     width: 80%;
     margin-left: 10%;
