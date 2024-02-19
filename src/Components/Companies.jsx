@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import img from '../assets/ok.jpg';
 import React from 'react';
 import { space, color, typography } from 'styled-system';
 const Companies =(props)=>{
@@ -8,9 +7,10 @@ const Companies =(props)=>{
   ${color}
   ${typography}
 `;
-    const H = styled.h1`
+const {name,img,HandleForm}= props;
+    const H = styled.button`
     display:blocks;
-    background-color:black;
+    background-color:#767895;
     width:100%;
     height:50px;
     color:white;
@@ -46,7 +46,8 @@ const Companies =(props)=>{
   }
   
 `;
-
+const Compan = styled.div`
+`
    
     const Image = styled.div`
     background-size: cover;
@@ -60,24 +61,114 @@ const Companies =(props)=>{
     margin:bottom:5px;
     `
     const P = styled.p`
-    text-align:center;`
+    text-align:center;
+    font-size: 30px;
+    color: #fff;
+   background-color:#767895;
+    border-radius:12px; `
  const hos=()=>{
     console.log("hellow")
  }
-    const {name}= props;
+  
     return(
+      <>
+      <Compan>
         <Comp onClick={
         ()=>(
-            console.log("hellow")
+            HandleForm({name})
         )
         }>
             <Image>
-            <H className='hi'>hellow</H>
+            <H className='hi'>Go with us</H>
             </Image>
         
             <P>{name}</P>
            
         </Comp>
+        <button onClick={()=>{console.log("hellow world to me")}}>See List
+       &nbsp; {name}</button>
+        </Compan>
+      </>
+      
     )
 }
 export default Companies;
+
+// const Companies = (props) => {
+//   const { name, img, HandleForm } = props;
+
+//   const Comp = styled.div`
+//     height: auto;
+//     display: block;
+//     margin: 10px;
+//     margin-top: 10px;
+//     padding: 10px;
+//     border-radius: 5px;
+//     &:hover {
+//       .hi {
+//         display: block;
+//       }
+//     }
+//   `;
+
+//   const Image = styled.div`
+//     background-size: cover;
+//     width: 400px;
+//     height: 300px;
+//     border-radius: 5%;
+//     background-image: url(${img});
+//     display: flex;
+//     justify-content: center;
+//     align-items: flex-end;
+//     margin-bottom: 5px;
+//   `;
+
+//   const P = styled.p`
+//     text-align: center;
+//     font-size: 30px;
+//     color: #fff;
+//     background-color: #767895;
+//     border-radius: 12px;
+//   `;
+
+//   return (
+//     <>
+//       <Comp
+//         onClick={() => {
+//           HandleForm({ name });
+//         }}
+//       >
+//         <Image>
+//           <H className="hi">Go with us</H>
+//         </Image>
+
+//         <P>{name}</P>
+//       </Comp>
+//     </>
+//   );
+// };
+
+// const CompaniesContainer = styled.div`
+//   display: grid;
+//   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+//   gap: 20px;
+// `;
+
+// const CompaniesList = (props) => {
+//   const companies = props.companies;
+
+//   return (
+//     <CompaniesContainer>
+//       {companies.map((company, index) => (
+//         <Companies
+//           key={index}
+//           name={company.name}
+//           img={company.img}
+//           HandleForm={company.HandleForm}
+//         />
+//       ))}
+//     </CompaniesContainer>
+//   );
+// };
+
+// export default CompaniesList;

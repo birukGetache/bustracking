@@ -7,7 +7,8 @@ import TelegramIcon from '@mui/icons-material/Telegram';
 import InstagramIcon from '@mui/icons-material/Instagram';
 const Contact =()=>{
     const MainFotter= styled.div`
-
+    color: #5c64f3;
+  font-size:18px;
     `
     const Main = styled.div`
  

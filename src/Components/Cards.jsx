@@ -17,9 +17,15 @@ const Cards =()=>{
     border-radius: 50px;
     padding-top: 50px;
     padding-left:10px;
- font-size:20px;   `
-    const P= styled.p`
-    text-align:center;`
+ font-size:20px;
+ color: #5c64f3;    `
+ const P = styled.p`
+ text-align: center;
+ font-size: 30px;
+ color: #2732f4; 
+ margin-top: 10px; 
+`;
+
     const AllCards = styled.div`
     display: grid;
     width: 100%;

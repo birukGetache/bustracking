@@ -14,6 +14,8 @@ const Form = styled.form`
 const Label = styled.label`
   display: block;
   margin-bottom: 5px;
+  color: #5c64f3;
+  font-size:18px;
 `;
 
 const Input = styled.input`

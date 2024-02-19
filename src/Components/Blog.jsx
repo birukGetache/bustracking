@@ -8,7 +8,7 @@ const Blog =()=>{
    float:left;
    margin:10% `
     return(
-        <h1>we are bu tracking system </h1>
+        <H>we are bus tracking system </H>
     )
 }
 export default Blog;

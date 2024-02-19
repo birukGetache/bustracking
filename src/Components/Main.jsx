@@ -10,6 +10,8 @@ const Mains = styled.div`
     background-image: url(${img}); /* Use the imported image */
     background-repeat:no-repeat;
     background-size: cover; 
+    margin-left:0px;
+    padding:0;
 `;
 const Main = () => {
     return (
