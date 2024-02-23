@@ -1,12 +1,33 @@
 import styled from '@emotion/styled';
 import React from 'react';
 const Search = styled.input`
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
-    box-sizing: border-box;
-    border-radius: 40px;
-    height: 100%;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  box-sizing: border-box;
+  border-radius: 40px;
+  height: 100%;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  outline: none;
+  transition: border-color 0.3s ease;
+  background-color: #f8f8f8;
+opacity:0.5;
+  &:focus {
+    border-color: #007bff;
+  }
+
+  &::placeholder {
+    color: #aaa;
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 14px;
+  }
 `;
 
 const Main = styled.div`

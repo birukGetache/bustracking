@@ -14,6 +14,10 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBus } from '@fortawesome/free-solid-svg-icons';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons';
+import Ticket from './Components/Ticket';
+import {Button} from '@mui/material';
+
+
 // Define styled components outside the functional component
 const Comps = styled.div`
   display: grid;
@@ -27,7 +31,7 @@ const P = styled.p`
   display: block;
   text-align: center;
   color: #767895;
-  font-size: 16px;
+  font-size: 30px;
   margin: 10px 0;
   line-height: 1.5;
   /* Add more styles as needed */
@@ -40,6 +44,8 @@ grid-template-columns: 1fr 1fr 1fr;
 function App() {
   // Define event handle
 const [form,setForm] = useState('');
+const [FormToCity,setFormToCity] = useState(false);
+const [Btn,setBtn] = useState(true);
 const HandleForm = (data)=>{
   setForm(data);
 }
@@ -59,7 +65,7 @@ const BlurContainer = styled.div`
 `;
 const CompIcon = <AccountCircleIcon style={{
   color:"#6aaaf9",
-  fontSize:"105px",
+  fontSize:"105px"
 }}></AccountCircleIcon>;
 const CompIcon1 = <FontAwesomeIcon icon={faBus} style={{
   color:"#6aaaf9",
@@ -74,7 +80,12 @@ const CompIcon2 = <FontAwesomeIcon icon={faBuilding} style={{
    
     <Container hasForm={!!form}>
     <Main />
-      <P>Choose Companies to Go</P>
+    {Btn&&<Button onClick={()=>{
+      setFormToCity(true)
+      setBtn(false)
+    }}>Order To Go</Button>}
+   {FormToCity&&<Ticket setFormToCity={setFormToCity} setBtn={setBtn}></Ticket>} 
+      <P> If You want to Choose Companies to Go</P>
       <div>
      
       <Comps hasForm={!!form}>
@@ -98,6 +109,7 @@ const CompIcon2 = <FontAwesomeIcon icon={faBuilding} style={{
       </Divgsoes>
 
       <Cards></Cards>
+     
       <MainFooter></MainFooter>
     </Container>
     {form && <Form form={form} />}
