@@ -100,6 +100,7 @@ const Div= styled.div`
 width:100%;
 height:100%;
 `
+const array= [{city:"jimma"},{city:"adama"},{city:"gonder"},{city:"mekele"},{city:"adigrat"},{city:"aseb"},"asmera","bahirdar","addisabeba","hawwasa","shashemene","asosa","sidama","semera"] ;
   return (
     <Div>
       {form && (<>
@@ -133,20 +134,9 @@ height:100%;
               value={formData.startCity}
               onChange={handleChange}
             >
-            <option value="Adama">adama</option>
-              <option value="Bahirdar">bahirdar</option>
-              <option value="addis abeba">addis abeba</option>
-              <option value="Bishoftu">Bishoftu</option>
-              <option value="Mekele">Mekele</option>
-              <option value="Asmera">Asmera</option>
-              <option value="Hawassa">Hawassa</option>
-              <option value="Giggiga">Giggiga</option>
-              <option value="Semera">Semera</option>
-              <option value="Sidama">Sidama</option>
-              <option value="Asosa">Asosa</option>
-              <option value="Jima">Jima</option>
-              <option value="Gonder">Gonder</option>
-              <option value="Aseb">Aseb</option>
+         {array.forEach(arr=>{
+          <option value={arr.city}>{arr.city}</option>
+         })}
             </select>
           </FormGroup>
           <FormGroup>
