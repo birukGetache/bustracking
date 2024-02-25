@@ -7,17 +7,21 @@ import TelegramIcon from '@mui/icons-material/Telegram';
 import InstagramIcon from '@mui/icons-material/Instagram';
 const Contact =()=>{
     const MainFotter= styled.div`
-    color: #5c64f3;
+    color: #;
   font-size:18px;
+  font-family: cursive;
     `
     const Main = styled.div`
- 
+    font-family: cursive;
     `
     const P = styled.p`
+    font-family: cursive;
    `
+   const H2= styled.h2`
+   color:#058029;`
  return(
    <Main>
-      <h2>Contact</h2>
+      <H2>Contact</H2>
     <MainFotter><PhoneIcon></PhoneIcon>+25141330816</MainFotter>
     <MainFotter><EmailIcon></EmailIcon>burab1742@gmail.com</MainFotter>
     <MainFotter><TwitterIcon/>good baby</MainFotter>

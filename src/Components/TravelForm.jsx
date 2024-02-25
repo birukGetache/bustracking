@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import {initializeApp} from 'firebase/app';
 import {collection, getFirestore,addDoc,serverTimestamp} from "firebase/firestore";
+import { Close } from "@mui/icons-material";
 function TravelForm(props) {
   const [formData, setFormData] = useState({
     name: '',
@@ -26,7 +27,7 @@ function TravelForm(props) {
     }));
   };
 
-  const { form } = props;
+  const { form,setForm } = props;
   const firebaseConfig = {
     apiKey: "AIzaSyADRIgfLRJcIyaPTfTs39T6CdiHhpesZSU",
     authDomain: "busticket-6849f.firebaseapp.com",
@@ -100,12 +101,16 @@ const Div= styled.div`
 width:100%;
 height:100%;
 `
+const Cls =styled.div`
+text-align: right;
+`
 const array= [{city:"jimma"},{city:"adama"},{city:"gonder"},{city:"mekele"},{city:"adigrat"},{city:"aseb"},"asmera","bahirdar","addisabeba","hawwasa","shashemene","asosa","sidama","semera"] ;
   return (
     <Div>
       {form && (<>
        
         <StyledForm onSubmit={handleSubmit}>
+          <Cls><Close onClick={()=>{setForm('')}}></Close></Cls>
         <p>Well come to {form.name} Form</p>
           <FormGroup>
             <label>Name:</label>

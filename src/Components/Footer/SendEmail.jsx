@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import axios from 'axios';
 
 // Styled components
 const Container = styled.div`
   max-width: 400px;
   margin: 0 auto;
+  font-family: cursive;
 `;
 
 const Form = styled.form`
   margin-top: 20px;
+  color:#000;
 `;
 
 const Label = styled.label`
   display: block;
   margin-bottom: 5px;
-  color: #5c64f3;
+  color: #000;
   font-size:18px;
 `;
 
@@ -33,11 +36,13 @@ const Textarea = styled.textarea`
 
 const Button = styled.button`
   background-color: #007bff;
-  color: #fff;
+color:#000;;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
 `;
+const H2= styled.h2`
+color:#058029;`
 
 function SendEmail() {
   // State variables to store email and message
@@ -51,11 +56,21 @@ function SendEmail() {
     console.log('Email:', email);
     console.log('Message:', message);
     // You can also send the data to a backend server for processing
+    try{
+    const reponse=  axios.post('http://localhost:3001/send-email',{
+      to: email,
+      text: message
+    });
+    console.log(reponse)
+    }
+    catch(err){
+      console.log(err);
+    }
   };
 
   return (
     <Container>
-      <h2>Contact Us with Email</h2>
+      <H2>Contact Us with Email</H2>
       <Form onSubmit={handleSubmit}>
         <div>
           <Label>Email:</Label>

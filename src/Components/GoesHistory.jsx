@@ -10,6 +10,7 @@ const Main = styled.div`
   background-color: #e3deeb;
   margin-bottom: 40px;
   position: relative;
+  padding:10px;
 `;
 
 const dropAnimation = keyframes`
@@ -23,13 +24,23 @@ const dropAnimation = keyframes`
   }
 `;
 
+// const Char = styled.span`   no  space between them
+//   display: inline-block;
+//   font-size: 40px;
+//   color: #058029;
+//   animation: ${dropAnimation} 0.5s ease forwards;
+// `;
 const Char = styled.span`
-  display: inline-block;
-  font-size: 40px;
-  color: #5c64f3;
+  display: inline;
+  font-size: 25px;
+  font-family: cursive;
+  color: #058029;
   animation: ${dropAnimation} 0.5s ease forwards;
+  margin-right: 5px; // Add margin-right for space between characters
+  font-weight:bold;
 `;
-
+const H1 = styled.h1`
+font-size:50px;`
 const GoesHistory = (props) => {
   const { count } = props;
   const [countState, setCount] = useState(0);
@@ -94,10 +105,11 @@ const GoesHistory = (props) => {
 
   return (
     <Main ref={ref}>
+   
       {displayedText.split('').map((char, index) => (
         <Char key={index}>{char}</Char>
       ))}
-      <h1>{countState}</h1>
+      <H1>{countState}+</H1>
       <Box className="Component">{props.comp}</Box>
     </Main>
   );

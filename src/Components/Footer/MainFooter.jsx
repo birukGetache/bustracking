@@ -4,12 +4,11 @@ import styled from '@emotion/styled'
 const MainFotter =()=>{
    const Div = styled.div`
    padding:15px;
-   color: #5c64f3;
    font-size:18px;
    `
    const Span = styled.h2`
    display:inline;
-   color:#000;
+   color:#058029;;
    font-waight:bold;`
 return(<>
    

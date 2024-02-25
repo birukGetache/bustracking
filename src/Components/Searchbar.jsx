@@ -15,7 +15,7 @@ const Search = styled.input`
   background-color: #f8f8f8;
 opacity:0.5;
   &:focus {
-    border-color: #007bff;
+    border-color: #058029;;
   }
 
   &::placeholder {

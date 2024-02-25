@@ -4,7 +4,7 @@ import Searchbar from './Searchbar';
 import Blog from './Blog'
 import Header from './Header';
 import React from 'react';
-import video from '../../public/Home.mp4'; // Import your video file
+import video from '../../public/BusSystem.mp4'; // Import your video file
 
 const Mains = styled.div`
     height: 100vh; /* Adjust the height as needed */

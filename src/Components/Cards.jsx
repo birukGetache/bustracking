@@ -16,28 +16,32 @@ const Cards =()=>{
     background-color:#e3deeb;
     border-radius: 50px;
     padding-top: 50px;
-    padding-left:10px;
  font-size:20px;
- color: #5c64f3;    `
- const P = styled.p`
+color:rgb(58, 58, 59);
+ height:450px;
+ z-index: 1;
+ padding-left:30px;
+ padding:`
+ const P = styled.h1`
  text-align: center;
- font-size: 30px;
- color: #2732f4; 
+ color:#058029 ; 
  margin-top: 10px; 
+ font-family: cursive;
 `;
 
     const AllCards = styled.div`
     display: grid;
     width: 100%;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-   
+    font-family: cursive;
     gap:20px;
     justfy-content:center;
+   color:#058029;
 `;
     const Button = styled.div`
     width: 120px;
     height: 120px;
-    background-color: blue;
+    background-color: #058029;
     border-radius: 50%;
     position: absolute;
     text-align: center;
@@ -48,6 +52,7 @@ const Cards =()=>{
     overflow: visible; 
 padding: 25px;
 color:#959def;
+z-index: 2;
     `
 return(
     <>

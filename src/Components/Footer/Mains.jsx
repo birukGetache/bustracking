@@ -10,6 +10,9 @@ const Mains =()=>{
     background-color:#e3deeb;;
     margin-top:60px;
     padding:5px;
+    font-family: cursive;
+    padding-left:100px;
+    margin-top:100px;
   `;
 return(
     <Man>

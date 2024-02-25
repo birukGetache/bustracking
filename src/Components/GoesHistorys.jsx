@@ -7,7 +7,7 @@ const Main = styled.div`
   width: 90%;
   gap: 5px;
   border-radius: 2%;
-  background-color: #e3deeb;
+  background-color: #06a636;
   margin-bottom: 40px;
   position: relative;
 `;
@@ -27,7 +27,7 @@ const dropAnimation = keyframes`
 
 const P = styled.p`
   font-size: 40px;
-  color: #5c64f3;
+  color: #06a636;
   animation: ${dropAnimation} 0.5s ease forwards;
 `;
 const GoesHistory = (props) => {
