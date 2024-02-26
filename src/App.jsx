@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import Main from './Components/Main';
 import Companies from "./Components/Companies";
 import Cards from "./Components/Cards";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import MainFooter from "./Components/Footer/Mains";
 import img from './assets/selam.png'
 import img2 from './assets/goldon.png'
@@ -17,7 +17,9 @@ import { faBus } from '@fortawesome/free-solid-svg-icons';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 import Ticket from './Components/Ticket';
 import {Button} from '@mui/material';
-
+import ReactModal from 'react-modal';
+import { initializeApp } from 'firebase/app';
+import { getFirestore,collection, getDocs} from 'firebase/firestore';
 
 // Define styled components outside the functional component
 const Comps = styled.div`
@@ -52,6 +54,55 @@ function App() {
 const [form,setForm] = useState('');
 const [FormToCity,setFormToCity] = useState(false);
 const [Btn,setBtn] = useState(true);
+const [isOpen, setIsOpen] = useState(false);
+const [docs, setDocs] = useState([]);
+const openModal = () => {
+  setIsOpen(true);
+};
+const closeModal = () => {
+  setIsOpen(false);
+};
+
+// Import necessary packages
+
+
+// Firebase configuration object
+const firebaseConfig = {
+  apiKey: "AIzaSyA42PnZQh2cA7AyoRIFrvFxCrFS9pZ3Utc",
+  authDomain: "bussystem-fd3c1.firebaseapp.com",
+  projectId: "bussystem-fd3c1",
+  storageBucket: "bussystem-fd3c1.appspot.com",
+  messagingSenderId: "426762441699",
+  appId: "1:426762441699:web:ca44cdbe794832ccd486d6",
+  measurementId: "G-S6H85F8L6K"
+};
+// Initialize Firebase app
+const firebaseApp = initializeApp(firebaseConfig);
+
+// Initialize Firestore
+const firestore = getFirestore(firebaseApp);
+
+const collref=collection(firestore,'BusSystem');
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const snapshot = await getDocs(collref);
+      const docData = snapshot.docs.map(doc => ({ ...doc.data() }));
+      setDocs(docData);
+      docData.forEach(doc => {
+        console.log("city price: ", doc.form.startCity);
+      });
+    } catch (error) {
+      console.error("Error getting documents: ", error);
+    }
+  };
+
+  fetchData();
+
+}, []);
+
+
+
 const HandleForm = (data)=>{
   setForm(data);
 }
@@ -91,11 +142,35 @@ color: #058029;
    
     <Container hasForm={!!form}>
     <Main />
-    {Btn&&<Button onClick={()=>{
+    {/* {Btn&&<Button onClick={()=>{
       setFormToCity(true)
       setBtn(false)
-    }}>Order To Go</Button>}
-   {FormToCity&&<Ticket setFormToCity={setFormToCity} setBtn={setBtn}></Ticket>} 
+    }}>Order To Go</Button>} */}
+        <Button onClick={openModal}>Order To Go</Button>
+<ReactModal
+  isOpen={isOpen}
+  onRequestClose={closeModal}
+  contentLabel="Example Modal"
+>
+  <p>hellow</p>
+  {/* {FormToCity && */}
+  <ReactModal
+  isOpen={isOpen}
+  onRequestClose={closeModal}
+  contentLabel="Example Modal"
+>
+  <p>hello</p>
+  {docs.map(doc => (
+    <p key={doc.destinationCity}>{doc.form.startCity}</p>
+  ))}
+  <Ticket setFormToCity={setFormToCity} setBtn={setBtn} />
+</ReactModal>
+
+   <Ticket setFormToCity={setFormToCity} setBtn={setBtn}></Ticket>
+   {/* } */}
+</ReactModal>
+
+ 
       <P> If You want to Choose Companies to Go</P>
       <div>
      
@@ -108,6 +183,8 @@ color: #058029;
        
       </Comps>
       <BlurContainer>
+
+
           {form && <Form form={form} setForm={setForm} />}
       </BlurContainer>
       </div>

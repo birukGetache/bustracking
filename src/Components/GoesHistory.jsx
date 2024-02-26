@@ -91,18 +91,29 @@ const GoesHistory = (props) => {
     };
   }, [isCounting]);
 
+  // useEffect(() => {
+  //   if (isCounting && displayedText.length < props.title.length) {
+  //     const timer = setInterval(() => {
+  //       setDisplayedText((prev) => prev + props.title[prev.length]);
+  //       if (prev.length === props.title.length) {
+  //         clearInterval(timer);
+  //       }
+  //     }, 10); // Delay for 100ms between each character
+  //     return () => clearInterval(timer);
+  //   }
+  // }, [isCounting, displayedText, props.title]);
   useEffect(() => {
     if (isCounting && displayedText.length < props.title.length) {
       const timer = setInterval(() => {
-        setDisplayedText((prev) => prev + props.title[prev.length]);
-        if (prev.length === props.title.length) {
+        setDisplayedText((displayedText) => displayedText + props.title[displayedText.length]); // Use displayedText instead of prev
+        if (displayedText.length === props.title.length) { // Use displayedText here as well
           clearInterval(timer);
         }
       }, 10); // Delay for 100ms between each character
       return () => clearInterval(timer);
     }
   }, [isCounting, displayedText, props.title]);
-
+  
   return (
     <Main ref={ref}>
    
