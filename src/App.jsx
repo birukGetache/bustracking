@@ -19,7 +19,8 @@ import Ticket from './Components/Ticket';
 import {Button} from '@mui/material';
 import ReactModal from 'react-modal';
 import { initializeApp } from 'firebase/app';
-import { getFirestore,collection, getDocs} from 'firebase/firestore';
+import { getFirestore,collection, getDocs,where,query} from 'firebase/firestore';
+import Donate from './Components/Donate'
 
 // Define styled components outside the functional component
 const Comps = styled.div`
@@ -52,10 +53,13 @@ grid-template-columns: 1fr 1fr 1fr;
 function App() {
   // Define event handle
 const [form,setForm] = useState('');
-const [FormToCity,setFormToCity] = useState(false);
-const [Btn,setBtn] = useState(true);
+const [startCity,setStartCity] = useState('');
+const [DesCity,setDesCity] = useState('');
+const [List,setList] = useState(false);
 const [isOpen, setIsOpen] = useState(false);
 const [docs, setDocs] = useState([]);
+const [search,setSearch]=useState(false);
+const [pay,setPay]=useState(false);
 const openModal = () => {
   setIsOpen(true);
 };
@@ -81,25 +85,46 @@ const firebaseApp = initializeApp(firebaseConfig);
 
 // Initialize Firestore
 const firestore = getFirestore(firebaseApp);
-
-const collref=collection(firestore,'BusSystem');
 useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const snapshot = await getDocs(collref);
-      const docData = snapshot.docs.map(doc => ({ ...doc.data() }));
-      setDocs(docData);
-      docData.forEach(doc => {
-        console.log("city price: ", doc.form.startCity);
+console.log("hellow")
+const fetchDocsFromCollections = async () => {
+  try {
+    const collectionNames = ['Abay', 'Golden', 'Selam', 'Tata'];
+    const allDocsData = []; // Accumulate all document data here
+
+    // Iterate over each collection
+    for (const collectionName of collectionNames) {
+      const collRef = collection(firestore, collectionName);
+      const q = query(collRef, where("startCity", "==", startCity), where("destinationCity", "==", DesCity));
+      const snapshot = await getDocs(q);
+
+      snapshot.forEach((doc) => {
+        console.log("Document ID: ", doc.id);
+        console.log("Document Data: ", doc.data());
+        snapshot.forEach((doc) => {
+          console.log("Document ID: ", doc.id);
+          console.log("Document Data: ", doc.data());
+          allDocsData.push({ Company: collectionName, ...doc.data() });
+
+        });
+         // Push each document data to the array
       });
-    } catch (error) {
-      console.error("Error getting documents: ", error);
     }
-  };
 
-  fetchData();
+    // Update the state once with all accumulated document data
+    setDocs(allDocsData);
 
-}, []);
+    console.log("All Document Data: ", allDocsData); // Log the accumulated document data
+  } catch (error) {
+    console.error("Error getting documents: ", error);
+  }
+};
+
+
+
+  fetchDocsFromCollections();
+}, [search]);
+
 
 
 
@@ -151,23 +176,43 @@ color: #058029;
   isOpen={isOpen}
   onRequestClose={closeModal}
   contentLabel="Example Modal"
+  style={{
+    overlay: {
+      zIndex: 1000, // Adjust the z-index value as needed
+    },
+    content: {
+      zIndex: 1001, // Adjust the z-index value as needed
+    },
+  }}
 >
-  <p>hellow</p>
+  <h1>Companies</h1>
+  <button onClick={closeModal}>Close Modal</button>
   {/* {FormToCity && */}
-  <ReactModal
-  isOpen={isOpen}
-  onRequestClose={closeModal}
-  contentLabel="Example Modal"
->
-  <p>hello</p>
-  {docs.map(doc => (
-    <p key={doc.destinationCity}>{doc.form.startCity}</p>
-  ))}
-  <Ticket setFormToCity={setFormToCity} setBtn={setBtn} />
-</ReactModal>
 
-   <Ticket setFormToCity={setFormToCity} setBtn={setBtn}></Ticket>
-   {/* } */}
+  {List && (
+  <div>
+    {console.log(startCity)}
+    {console.log(DesCity)}
+    {console.log(docs)}
+    {docs.map(doc => {
+
+        return (
+          <React.Fragment key={doc.destinationCity} >
+            <p>{doc.startCity}</p>
+            <p>to</p>
+            <p>{doc.destinationCity}</p>
+            <p>{doc.price}</p>
+            <button onClick={()=>{
+              setPay(!pay);
+            }}>apply with {doc.Company}</button>
+          </React.Fragment>
+        );
+    })}
+  </div>
+)}
+{pay&&<Donate/>}
+
+  {!pay&&<Ticket setList={setList} setDesCity={setDesCity} setStartCity={setStartCity} setSearch={setSearch}/>}
 </ReactModal>
 
  

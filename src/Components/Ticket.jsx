@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import React from "react";
-import { Input } from "@mui/material";
-import { Close } from "@mui/icons-material";
+import React,{useState} from "react";
+import { Input, Select, MenuItem } from "@mui/material";
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -24,25 +23,56 @@ const Div = styled.div`
 display:flex;
 align-items:center;
 justify-content:right;`
+
 const Ticket = (props) => {
+  const {setList,setDesCity,setStartCity,setSearch} = props;
+  const [form, setForm] = useState({startCity: 'Addis Abeba', destinationCity: 'Bishoftu'})
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle form submission logic here
+  
+  setList(true);
+  setSearch(prev => !prev);
   };
 
+  const onCityChange = (mode, city) => {
+    if(mode === 'start') {
+      setForm(prev => ({...prev, startCity: city}))
+      setStartCity(city)
+    }
+    if(mode === 'destination') {
+      setForm(prev => ({...prev, destinationCity: city}))
+      setDesCity(city)
+    }
+  }
+ const Cities=["Adama","Addis Abeba","Bishoftu","Debrebirhan","Jimma","Aseb","Asmera","Nairobi","Hawasa"]
   return (
-    <Form onSubmit={handleSubmit}>
-    <Div ><Close onClick={()=>{props.setFormToCity(false)
-                               props.setBtn(true)}}></Close></Div>   
-      <Label htmlFor="first">First name:</Label>
-      <Input type="text" id="first " name="first_name" required />
-      <Label htmlFor="startCity">Last Name:</Label>
-      <Input type="text" id="startCity" name="startCity" required />
-      <Label htmlFor="startCity">Start City:</Label>
-      <Input type="text" id="startCity" name="startCity" required />
+    <Form onSubmit={handleSubmit}> 
+<Label htmlFor="startCity">Start City:</Label>
+   
+{/* <Select onChange={(e) => { setStartCity(e.target.value) }}>
+  {Cities.map(city => (
+    <MenuItem key={city} value={city}>{city}</MenuItem>
+  ))}
+</Select> */}
+<Select value={form.startCity} onChange={(e) => onCityChange('start', e.target.value)}>
+  {Cities.map(city => (
+    <MenuItem key={city} value={city}>{city}</MenuItem>
+  ))}
+</Select>
 
-      <Label htmlFor="destinationCity">Destination City:</Label>
-      <Input type="text" id="destinationCity" name="destinationCity" required />
+<Label htmlFor="destinationCity">Destination City:</Label>
+{/* <Select  onChange={(e) => { setDesCity(e.target.value) }}>
+  {Cities.map(city => (
+    <MenuItem key={city} value={city}>{city}</MenuItem>
+  ))}
+</Select> */}
+<Select value={form.destinationCity} onChange={(e) => onCityChange('destination', e.target.value)}>
+  {Cities.map(city => (
+    <MenuItem key={city} value={city}>{city}</MenuItem>
+  ))}
+</Select>
+
 
       <Label htmlFor="date">Date:</Label>
       <Input type="date" id="date" name="date" required />
