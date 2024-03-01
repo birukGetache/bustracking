@@ -21,6 +21,7 @@ import ReactModal from 'react-modal';
 import { initializeApp } from 'firebase/app';
 import { getFirestore,collection, getDocs,where,query} from 'firebase/firestore';
 import Donate from './Components/Donate'
+import MapComponent from "./Components/MapComponent";
 
 // Define styled components outside the functional component
 const Comps = styled.div`
@@ -233,6 +234,7 @@ color: #058029;
           {form && <Form form={form} setForm={setForm} />}
       </BlurContainer>
       </div>
+      <MapComponent></MapComponent>
       <H1>Statstics</H1>
       <Divgsoes>
       

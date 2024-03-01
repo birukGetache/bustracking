@@ -1,0 +1,69 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+    {
+    "type": "Feature",
+    "properties": {"name": "Gonder"},
+    "geometry": {
+    "type": "Point",
+    "coordinates": [37.4667, 12.6000]
+    }
+    },
+    {
+    "type": "Feature",
+    "properties": {"name": "BahirDar"},
+    "geometry": {
+    "type": "Point",
+    "coordinates": [37.3833, 11.6000]
+    }
+    },
+    {
+    "type": "Feature",
+    "properties": {"name": "Debre Birhan"},
+    "geometry": {
+    "type": "Point",
+    "coordinates": [39.6333, 9.6833]
+    }
+    },
+    {
+    "type": "Feature",
+    "properties": {"name": "Jimma"},
+    "geometry": {
+    "type": "Point",
+    "coordinates": [36.8167, 7.6667]
+    }
+    },
+    {
+    "type": "Feature",
+    "properties": {"name": "Hawassa"},
+    "geometry": {
+    "type": "Point",
+    "coordinates": [38.3660, 7.0620]
+    }
+    },
+    {
+    "type": "Feature",
+    "properties": {"name": "Mekele"},
+    "geometry": {
+    "type": "Point",
+    "coordinates": [39.6333, 13.4967]
+    }
+    },
+    {
+    "type": "Feature",
+    "properties": {"name": "Jijiga"},
+    "geometry": {
+    "type": "Point",
+    "coordinates": [42.8000, 9.3500]
+    }
+    },
+    {
+    "type": "Feature",
+    "properties": {"name": "Dire Dawa"},
+    "geometry": {
+    "type": "Point",
+    "coordinates": [41.8500, 9.6000]
+    }
+    }
+    ]
+    }
